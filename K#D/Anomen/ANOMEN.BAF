@@ -1,0 +1,7 @@
+IF
+    InParty(Myself)
+    !Kit(Myself,k#d)
+THEN
+    RESPONSE #100
+        AddKit(k#d)
+END

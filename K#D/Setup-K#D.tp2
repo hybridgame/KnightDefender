@@ -1,0 +1,88 @@
+// 2019-06-10
+// + Create git: https://github.com/hybridgame/KnightDefender
+
+BACKUP ~k#d/backup~
+AUTHOR ~hybridgame~
+VERSION "2019.06.10"
+
+LANGUAGE ~Korean~  ~Korean~ ~k#d/Language/setupko.tra~
+
+BEGIN "Knight defender kit for Cleric" DESIGNATED 0
+INCLUDE "k#d/lib/fl#add_kit_ee.tpa"
+
+// Add kit
+ADD_KIT ~k#d~
+    // CLASWEAP.2DA : BG1 proficiencies. (deprecated)
+    ~k#d   1 1 1 1 1 1 1 1~
+    
+    // WEAPPROF.2DA : BG2 proficiencies
+    ~k#d   0 0 0 0 2 2 0 2 0 0 0 0 0 0 0 0 2 2 0 0 2 2 2 0 0 0 0 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+    // ABCLASRQ.2DA : Minimum stats at character creation
+    ~k#d   16 16 16 11 13 17~
+    
+    // ABCLSMOD.2DA : Stat modifiers at character creation
+    ~k#d   0 0 0 0 0 0~
+    
+    // ABDCDSRQ.2DA : Stats requirement to dual-class
+    ~k#d   0 17 0 0 0 0~
+    
+    // ABDCSCRQ.2DA : Stats requirement to dual-class
+    ~k#d   0 0 0 17 0 0~
+    
+    //     LG LN LE NG TN NE CG CN CE ALIGNMNT.2DA : Selectable alignment
+    ~k#d   1  1  0  0  0  0  0  0  0~
+    
+    //     F C M T D R DUALCLAS.2DA : Dual possible classes
+    ~k#d   0 0 0 0 0 0~
+    
+    // Kit's own clab*.2da
+    ~k#d/2da/k#d.2da~
+    
+    // KITTABLE.2DA : Selectable race
+    ~K_C_H~
+    
+    // KITLIST.2DA : Kit's usability flag
+    ~0x04000000    3~
+    
+    // High level abilities. prefix lu file required
+    ~Cl0~
+    
+    // 25stweap.2da : TOB starting items
+    ~* * * * * * * * * * * * * * * * * * * *~
+    
+    // Lowercase name
+    SAY @1
+    
+    // First uppercase name
+    SAY @1
+    
+    // Description
+    SAY @2
+
+// Kit detail
+LAF fl#add_kit_ee
+    STR_VAR
+        kit_name = ~k#d~
+        hpclass = ~HPPRS~
+END
+
+// Protection from normal weapon, horror, chaos, charm & feeblemind, regeneration 1HP per round, +1 APR
+COPY ~k#d/spl/K#D01.SPL~ ~override~
+
+// Physical & magic resistance +5%
+COPY ~k#d/spl/K#D02.SPL~ ~override~
+
+BEGIN "Knight defender Anomen"
+REQUIRE_COMPONENT "setup-K#D.tp2" "0" @3
+REQUIRE_PREDICATE GAME_IS ~bg2ee~ @4
+
+COPY ~k#d/Anomen/npshld.itm~ ~override~
+
+COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN6.cre~
+COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN7.cre~
+COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN8.cre~
+COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN9.cre~
+COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN10.cre~
+
+EXTEND_BOTTOM ~ANOMEN.BCS~ ~k#d/Anomen/ANOMEN.BAF~
