@@ -1,7 +1,7 @@
 IF
     Global("KnightDefenderAnomen","GLOBAL",0)
-    InParty(Myself)
     !Kit(Myself,k#d)
+    InParty(Myself)
 THEN
     RESPONSE #100
         AddKit(k#d)
