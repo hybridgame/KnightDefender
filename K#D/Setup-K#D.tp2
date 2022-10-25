@@ -1,13 +1,16 @@
+// 2022-10-25
+// * APR like a fighter
+//
 // 2019-06-10
 // + Create git: https://github.com/hybridgame/KnightDefender
 
 BACKUP ~k#d/backup~
 AUTHOR ~hybridgame~
-VERSION "2019.06.10"
+VERSION "2022-10-25"
 
 LANGUAGE ~Korean~  ~Korean~ ~k#d/Language/setupko.tra~
 
-BEGIN "Knight defender kit for Cleric" DESIGNATED 0
+BEGIN "Knight Defender Cleric Kit" DESIGNATED 0
 INCLUDE "k#d/lib/fl#add_kit_ee.tpa"
 
 // Add kit
@@ -55,34 +58,33 @@ ADD_KIT ~k#d~
     SAY @1
     
     // First uppercase name
-    SAY @1
+    SAY @2
     
     // Description
-    SAY @2
+    SAY @3
 
 // Kit detail
 LAF fl#add_kit_ee
     STR_VAR
-        kit_name = ~k#d~
-        hpclass = ~HPPRS~
+        kit_name    = ~k#d~
+        hpclass     = ~HPPRS~
 END
 
-// Protection from normal weapon, horror, chaos, charm & feeblemind, regeneration 1HP per round, +1 APR
+// Protection from normal weapon, horror, chaos, charm & feeblemind, regeneration 1HP per round
 COPY ~k#d/spl/K#D01.SPL~ ~override~
+     ~k#d/spl/K#D02.SPL~ ~override~ // Physical & magic resistance +5%
+     ~k#d/spl/K#D03.SPL~ ~override~ // +0.5 APR
 
-// Physical & magic resistance +5%
-COPY ~k#d/spl/K#D02.SPL~ ~override~
-
-BEGIN "Knight defender Anomen"
-REQUIRE_COMPONENT "setup-K#D.tp2" "0" @3
-REQUIRE_PREDICATE GAME_IS ~bg2ee~ @4
+BEGIN "Knight Defender Anomen"
+REQUIRE_COMPONENT "setup-K#D.tp2" "0" ~Knight Defender Kit Required~
+REQUIRE_PREDICATE GAME_IS ~bg2ee~ ~Baldur's Gate 2 EE Required~
 
 COPY ~k#d/Anomen/npshld.itm~ ~override~
 
 COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN6.cre~
-COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN7.cre~
-COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN8.cre~
-COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN9.cre~
-COPY ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN10.cre~
+     ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN7.cre~
+     ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN8.cre~
+     ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN9.cre~
+     ~k#d/Anomen/ANOMEN.cre~ ~override/ANOMEN10.cre~
 
 EXTEND_BOTTOM ~ANOMEN.BCS~ ~k#d/Anomen/ANOMEN.BAF~
